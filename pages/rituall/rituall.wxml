@@ -1,0 +1,18 @@
+
+<view class="cart">
+    <view class="cartL" wx:for="{{vou}}">
+      <image src="../../images/yhj.png" class="y"></image>
+      <view class="right {{item.status == 'weishiyong' ? 'white' : 'gray'}}">
+        <view class="qian" wx:if="{{item.q_type == 1}}">¥{{item.q_dai_jiner}}</view>
+        <view class="qian" wx:if="{{item.q_type == 2}}">¥{{item.q_diyong_jiner}}</view>
+        <view class="mess">{{item.q_name}}</view>
+        <view class="date">{{item.q_begin_time}}-{{item.q_end_time}}</view>
+
+      </view>
+      <view class="sta  {{item.status == 'weishiyong' ? 'white' : 'gray'}}">{{item.status == 'weishiyong' ? '未使用' : item.status == 'yishiyong' ? '已使用' : item.status == 'yiguoqi' ? '已过期' : ''}}</view>
+    </view>
+    
+  </view>
+
+
+

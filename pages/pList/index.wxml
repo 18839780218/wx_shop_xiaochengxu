@@ -1,0 +1,16 @@
+<!--pages/pList/index.wxml-->
+<view class="ping">
+  <view class="zongliang">宝贝评价({{zPingjia}})</view>
+
+  <view class="det" wx:for="{{pingjia}}">
+     <view class="photo">
+       <image src="{{item.pic}}"></image>
+       <text>{{item.name}}</text>
+     </view>
+     <view class="intro">{{item.content}}</view>
+     <view class="p-time">
+       <text>{{item.addtime}}</text>
+       <!--<text>{{item.attr_name}}</text>-->
+     </view>
+  </view>
+</view>

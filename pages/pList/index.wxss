@@ -1,0 +1,67 @@
+/* pages/pList/index.wxss */
+.ping {
+  font-family: '微软雅黑';
+  font-size: 14px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 8px ;
+}
+.p-status {
+  margin-top: 5px;
+  font-size: 13px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.p-status text {
+  background-color: #fdecea;
+  border-radius: 12px;
+  padding:5px 12px;
+  display: inline-block;
+  margin-left: 20rpx;
+}
+.photo {
+  width: 100%;
+  margin-top: 20rpx;
+}
+.photo image {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.photo text {
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  font-size: 13px;
+}
+.intro {
+  font-size: 13px;
+  line-height: 17px;
+  margin-top: 10rpx;
+}
+.p-time {
+  color: gray;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.p-time text:nth-child(2) {
+  display: inline-block;
+  margin-left: 5px;
+}
+.my-btn {
+  width: 100px;
+  border: 1px solid red;
+  border-radius: 14px;
+  font-size: 14px;
+  color: red;
+  text-align: center;
+  padding: 3px;
+  margin: 18px 0 0 30%;
+}
+.det {
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
+}

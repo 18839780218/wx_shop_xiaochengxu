@@ -1,0 +1,50 @@
+<!-- index.wxml -->
+<view class="page">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true" class="swiper">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item class="swiper-item">
+        <image src="{{item.img}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+   <!--优惠劵-->
+  <view class="cart">
+    <view class="cartL" wx:for="{{youList}}" bindtap="myVou" data-vid="{{item.id}}" data-guoqi="{{item.guoqi}}">
+        <image src="../../images/yhj.png" class="y"></image>
+        <view class="right {{item.guoqi == 0 ? 'white': 'gray'}}">
+        <view class="qian" wx:if="{{item.q_type == 2}}">¥{{item.q_diyong_jiner}}</view>
+        <view class="qian" wx:if="{{item.q_type == 1}}">¥{{item.q_dai_jiner}}</view>
+        <view class="mess">{{item.q_name}}</view>
+        <view class="date">{{item.q_begin_time}}-{{item.q_end_time}}</view>
+        </view>
+      </view>
+
+  </view>
+
+
+    <view class="cont">
+      <navigator class="pr" url="../product/detail?productId={{item.id}}" hover-class="changestyle"
+                 wx:for="{{productData}}">
+       <view class="co">
+          <image class="photo" src="{{item.g_img}}"></image>
+          <view class="title">{{item.g_name}}</view>
+          <view style="display:flex;line-height:50rpx;padding:10rpx 0; overflow: hidden;">
+            <view class="gmxx" style="  color: red;">¥{{item.shop_price}}</view>
+            <view class="gmx">¥{{item.market_price}}</view>
+          </view>
+          <view style="display:flex;line-height:50rpx;color:#999">
+            <view class="gmxx" style="font-size:28rpx;width:30%">
+              <text wx:if="{{item.is_hot==1}}">热销</text>
+              <text wx:elif="{{item.is_bast==1}}">精品</text>
+              <text wx:else>推荐</text>
+            </view>
+            <view class="ku" style="width:60%">销量：{{item.sale_number}}</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="clear mt10" bindtap="getMore">点击查看更多</view>
+
+  </view>
+  <loading hidden="{{loadingHidden}}">加载中</loading>

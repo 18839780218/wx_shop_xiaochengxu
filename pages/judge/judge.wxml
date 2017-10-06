@@ -1,0 +1,48 @@
+<!--pages/judge/judge.wxml-->
+<view class="box">
+<!--<view class="shop df" wx:for="{{proData}}">
+        <image class="sh_slt" src="{{item.g_img}}"></image>
+        <view class="df_1">            
+            <view class="sp_text">
+                    <view class="sp_tit ovh1">{{item.g_name}}</view>
+                <view class="sp_neb">购买数量:{{item.goods_num}}</view>
+                <view class="sp_jg">¥：{{item.shop_price}}</view>
+                <view class="sp_neb">{{item.shuxing[0]}} {{item.shuxing[1]}} {{item.shuxing[2]}} {{item.shuxing[3]}}</view>
+            </view>
+        </view>
+</view>-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="attr_box">
+    <!--属性名-->
+    <view class="attr_name">评价: </view>
+    <!--属性值-->
+    <view class="attr_value_box">
+      <!--每个属性值-->
+       <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio attr_value">
+          <radio value="{{2}}" checked/>很好
+        </label>
+        <label class="radio attr_value">
+          <radio value="{{1}}" />好
+        </label>
+        <label class="radio attr_value" >
+          <radio value="{{0}}"/>一般
+        </label>
+      </radio-group>
+
+    </view>
+  </view>
+
+  
+
+    <view class="section">
+      <textarea bindblur="bindTextAreaBlur" class="textarea" placeholder="宝贝满足您的期待吗?说说它的优点和美中不足的地方吧" name="content"/>
+   </view>
+    
+    <view class="btn-area">
+      <button formType="submit"  class="btn">提交评价</button>
+    </view>
+  </form>
+
+
+  </view>

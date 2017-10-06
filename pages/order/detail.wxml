@@ -1,0 +1,62 @@
+<!--pages/order/detail.wxml-->
+<view class="w100">
+		<view class="p_all bg_white df item" wx:for="{{proData}}">
+			<view class="cp_photo">			
+				<image src="{{item.g_img}}"></image>
+			</view>
+			<view class="df_1">	
+				<view class="font_14 mt5 ovh1">
+		      {{item.g_name}}
+		    </view>
+			  <text class="gm_ovh_1h red pt10">¥{{item.shop_price}}</text>
+        <view class="sl">
+		        {{item.shuxing[0]}}  {{item.shuxing[1]}}  {{item.shuxing[2]}}  {{item.shuxing[3]}}
+		    </view>
+			  <view class="sl">
+		       <text class="left"> 数量：{{item.goods_num}}</text>  <navigator url="../judge/judge?goodsid={{item.id}}&&ordersn={{orderId}}&&ogid={{item.ogid}}"  wx:if="{{judge == 1 && item.is_pingjia == 0}}" class="right">评价商品</navigator>
+           <text class="right"  wx:if="{{item.is_pingjia == 1}}" style="color: gray;">已评价</text>
+		    </view>
+			</view>
+		</view>		
+		
+		<view class="p_all bg_white mt10 font_14">
+			<view class="df">
+				<view class="df_1 c6">
+				<view class="l_h20">收货人：{{orderData.re_name}}<text class="fl_r mr10">{{orderData.phone}}</text></view>
+				<view class="l_h20 mt5">地址：{{orderData.province}} {{orderData.city}} {{orderData.area}} {{orderData.address}}</view>
+				</view>
+			</view>
+		</view>	
+
+		<view class="p_all bg_white mt10 c6 l_h20  font_14">
+			<!--<view >
+			订单状态：<text class="red">{{orderData.order_status}}</text>
+			</view>-->
+			<view >
+			订单编号：{{orderData.order_sn}}
+			</view>
+			<view class="mt10">
+			订单时间：{{time}}
+			</view>         
+		    </view>
+
+           <view class="p_all bg_white mt10 font_14">
+			<textarea class="min_60" auto-height name="remark" disabled="{{true}}" placeholder="订单备注" value="{{remark?remark:'未备注'}}"/> 
+		</view>	
+    
+  <view class="zhifu mt10 tc">运费：<span class="font_20 red myfont">¥ {{yunfei}}</span></view>
+  <view class="zhifu mt10 tc">优惠：<span class="font_20 red myfont">¥ {{youhui}}</span></view>
+	<view class="zhifu mt10 tc">金额：<span class="font_20 red myfont">¥ {{total_price}}</span></view>
+  <view class="zhifu mt10 tc">合计：<span class="font_20 red">¥ {{(total_price - 0) + (yunfei -0) - youhui}} </span></view>
+        
+
+	<view class="p_all mt10">
+		<view class="btnGreen">
+			        <!-- <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="warn"> 确认 </button> -->
+        		<!--<contact-button type="default-light" session-from="orderNo_{{orderData.OrderNo}}">
+		        客服
+		        </contact-button>-->
+		</view>
+	</view>
+</view>

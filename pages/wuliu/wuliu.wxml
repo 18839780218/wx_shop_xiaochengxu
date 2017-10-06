@@ -1,0 +1,27 @@
+<!--pages/wuliu/wuliu.wxml-->
+<view class="box">
+  <view class="search_no" wx:if="{{info == null}}">
+    <view class="font_14"><image class="scimg" src="/images/search_no.png"></image></view>
+    <text>暂无物流信息/(ㄒoㄒ)/~~</text>
+  </view>
+
+
+  <view class="con">
+     <view class="left red first">●</view>
+     <view class="right">
+        <view class="news red">{{first.context}}</view>
+        <view class="date red">{{first.time}}</view>
+     </view>
+  </view>
+
+  <view class="con" wx:for="{{list}}">
+     <view class="left">●</view>
+     <view class="right">
+        <view class="news">{{item.context}}</view>
+        <view class="date">{{item.time}}</view>
+     </view>
+  </view>
+
+</view>
+
+<loading hidden="{{loadingHidden}}">加载中</loading>

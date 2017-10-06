@@ -1,0 +1,223 @@
+
+<!--pages/index/detail.wxml-->
+
+
+<!--内容开始-->
+<view class="cont">
+  <!--<image class="tp_image" src="{{itemData.photo_d}}"></image>-->
+  <swiper style="height:375px" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{bannerItem}}">
+      <swiper-item>
+        <image src="{{item.g_img}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="title">{{itemData.g_name}}</view>
+  <view class="gmxx">
+    <view><span class="jiage">¥：{{jiaqian}}</span> <span class="c6 fl_r font_14" style='color:#ccc'>库存：{{itemData.g_number}}</span> </view>
+    <view class="font_14 c6">品牌：{{itemData.g_description}}</view>
+    
+    <view class="font_14 c6">支付：微信支付</view>
+
+  </view>
+</view>
+
+<!--  商品属性 -->
+<!--options-->
+<view class="commodity_attr_list" wx:if="{{commodityAttr0 != '' && commodityAttr0 != null && commodityAttr0 != undefine && commodityAttr != 'null' }}">
+  <!--每组属性-->
+  <view class="attr_box">
+    <!--属性名-->
+    <view class="attr_name">{{commodityAttr0.attr_name}}</view>
+    <!--属性值-->
+    <view class="attr_value_box">
+      <!--每个属性值-->
+      <radio-group class="radio-group" bindchange="radioChange0">
+        <label class="radio attr_value" wx:for="{{commodityAttr0.xiangqing}}" bindtap="howmuch0" data-money="{{item.format_price}}">
+          <radio value="{{item.id}}" checked="{{item.ischeck == 1}}"/>{{item.label}}
+        </label>
+     </radio-group>
+    </view>
+  </view>
+</view>
+
+<view class="commodity_attr_list" wx:if="{{commodityAttr1 != '' && commodityAttr1 != null && commodityAttr != 'null'}}">
+  <!--每组属性-->
+  <view class="attr_box">
+    <!--属性名-->
+    <view class="attr_name">{{commodityAttr1.attr_name}}</view>
+    <!--属性值-->
+    <view class="attr_value_box">
+      <!--每个属性值-->
+      <radio-group class="radio-group" bindchange="radioChange1">
+        <label class="radio attr_value" wx:for="{{commodityAttr1.xiangqing}}" bindtap="howmuch1" data-money="{{item.format_price}}">
+          <radio value="{{item.id}}" checked="{{item.ischeck == 1}}"/>{{item.label}}
+        </label>
+     </radio-group>
+    </view>
+  </view>
+</view>
+
+<view class="commodity_attr_list" wx:if="{{commodityAttr2 != '' && commodityAttr2 != null && commodityAttr != 'null' }}">
+  <!--每组属性-->
+  <view class="attr_box">
+    <!--属性名-->
+    <view class="attr_name">{{commodityAttr2.attr_name}}</view>
+    <!--属性值-->
+    <view class="attr_value_box">
+      <!--每个属性值-->
+      <radio-group class="radio-group" bindchange="radioChange2">
+        <label class="radio attr_value" wx:for="{{commodityAttr2.xiangqing}}" bindtap="howmuch2" data-money="{{item.format_price}}">
+          <radio value="{{item.id}}" checked="{{item.ischeck == 1}}"/>{{item.label}}
+        </label>
+     </radio-group>
+    </view>
+  </view>
+</view>
+
+<view class="commodity_attr_list" wx:if="{{commodityAttr3 != '' && commodityAttr3 != null && commodityAttr != 'null'}}">
+  <!--每组属性-->
+  <view class="attr_box">
+    <!--属性名-->
+    <view class="attr_name">{{commodityAttr3.attr_name}}</view>
+    <!--属性值-->
+    <view class="attr_value_box">
+      <!--每个属性值-->
+      <radio-group class="radio-group" bindchange="radioChange3">
+        <label class="radio attr_value" wx:for="{{commodityAttr3.xiangqing}}" bindtap="howmuch3" data-money="{{item.format_price}}">
+          <radio value="{{item.id}}" checked="{{item.ischeck == 1}}"/>{{item.label}}
+        </label>
+     </radio-group>
+    </view>
+  </view>
+</view>
+
+
+<view class="ping" wx:if="{{pingjia != null && pingjia != undefine }}">
+  <view class="zongliang">宝贝评价({{zPingjia}})</view>
+  <view class="p-status">
+     <text>宝贝很好({{pingjia_2}})</text>
+     <text>宝贝不错({{pingjia_1}})</text>
+     <text>宝贝一般({{pingjia_0}})</text>
+  </view>
+  <view class="det" wx:for="{{pingjia}}">
+     <view class="photo">
+       <image src="{{item.pic}}"></image>
+       <text>{{item.name}}</text>
+     </view>
+     <view class="intro">{{item.content}}</view>
+     <view class="p-time">
+       <text>{{item.addtime}}</text>
+       <!--<text>{{item.attr_name}}</text>-->
+     </view>
+  </view>
+  <navigator url="../pList/index?goodsid={{productId}}" class="my-btn" >查看全部评价</navigator>
+</view>
+
+
+
+<!--弹窗-->
+<view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+<view class="close_icon" bindtap="setModalStatus" data-status="0">×</view>
+  <view class="drawer_attr_content">
+    <view class="text_center">
+         <image class="drawer_image" src="{{itemData.g_img}}" ></image>
+         <view class="mingcheng">
+             <view>{{itemData.g_name}}</view>
+             <view style="font-size:29rpx;color:red">¥ {{jiaqian}}</view>
+             <view  style="font-size:26rpx;color:#ccc">库存：{{itemData.g_number}}</view>
+         </view>
+    </view>
+   
+    <view class="shu">
+        <text class="cun">购买数量</text>
+       <view class="dian">
+        <view class="stepper">
+
+       <!-- 减号 -->
+       <text class="{{minusStatuses[index]}}" data-alpha-beta="0" bindtap="changeNum">-</text>
+       <!-- 数值 -->
+       <view class="nownum">{{buynum}}</view>
+       <!-- 加号 -->
+       <text class="normal" data-alpha-beta="1" bindtap="changeNum">+</text>
+      </view>
+      </view>
+   </view>
+   <view class="footc" bindtap="addShopCart" data-type="buynow" data-status="1" data-cartid="{{itemData.id}}" data-cgid="{{itemData.cgid}}">
+立即购买
+</view>
+  </view>
+</view>
+
+
+
+
+<!--图文详情头部-->
+<view>
+<view class="swiper-tab">
+  <view class="bre swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">图文详情</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">产品参数</view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+
+  <!-- 图文详情 -->
+  <swiper-item>
+    <import src="../../wxParse/wxParse.wxml"/> 
+    <view class="wxParse">
+        <scroll-view style="height:2000rpx; box-sizing: border-box; font-size: 14px" scroll-y='true'>
+          <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+        </scroll-view>
+    </view>
+  </swiper-item>
+  
+
+
+  <!-- 产品参数 -->
+  <swiper-item>
+        <view class="p_all">
+      <view class="canshu df">
+        <view class="name">商品名称：</view>
+        <view class="df_1 c3">{{itemData.g_name}}</view>
+      </view>
+      <view class="canshu df">
+        <view class="name">商品ID：</view>
+        <view class="df_1 c3">{{itemData.cate_id}}</view>
+      </view>
+      <view class="canshu df">
+        <view class="name">分类：</view>
+        <view class="df_1 c3">{{itemData.cate_name}}</view>
+      </view>
+      <view class="canshu df">
+        <view class="name">售后：</view>
+        <view class="df_1 c3">签收之日48小时无条件退货</view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+</view>
+<!---底部开始-->
+<view class="footfixed tc">
+  <view class="fl_l w40 font_12 hui03 df">
+          <view class="df_1 l_h15 pt5 bre">
+                <contact-button type="default-light" session-from="productId_{{itemData.id}}" class="ke">
+                <contact-button class="pos"></contact-button>
+                  <image class="icon_kf" src="/images/kefu.png" style="margin-right:20px;"></image>
+                  <view class="dbtext" style="line;margin-top:5px">客服</view>
+                </contact-button >
+          </view>
+            <view class="df_1 l_h15 pt5">
+              <navigator url="../cart/cart" open-type="switchTab">
+                  <view bindtap="addFavorites">
+                      <image class="icon_kf" src="/images/che.png"></image>
+                      <view  class="dbtext" >进入购物车</view>
+                </view>
+              </navigator>
+         </view>
+  </view>
+  <view class="fl_l w60">
+    <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view>
+    <view class="bg_red white w50 fl_l" bindtap="setModalStatus" data-status="1">立刻购买</view>
+  </view>
+</view>
+<loading hidden="{{myHidden}}">加载中</loading>
