@@ -1,7 +1,7 @@
 <view class="section">
     <!-- 左侧类型 -->
     <scroll-view scroll-y="true" class="left">
-        <view wx:for="{{types}}" wx:key="typeId" data-type-id="{{item.id}}" bindtap="tapType" class="{{item.id == currType ? 'active' : ''}}" style="font-size:33rpx">
+        <view wx:for="{{types}}" wx:key="typeId" data-index="{{index}}" data-type-id="{{item.id}}" bindtap="tapType" class="{{index == nowIndex ? 'active' : ''}}" style="font-size:26rpx">
             {{item.name}}
         </view>
     </scroll-view>
@@ -9,10 +9,10 @@
     <!-- 右侧数据 -->
     <scroll-view scroll-y="true" class="right">
         <view class="typeTree">
-            <view  class="brand" wx:for="{{typeTree}}" wx:for-item="data">
-                <navigator url="../product/detail?productId={{data.id}}" wx:key="typeId" class="item">
-                    <image src="{{data.g_img}}"></image>
-                    <text>{{data.g_name}}</text>
+            <view  class="brand">
+                <navigator url="../filter/filter?catid={{typeTree.id}}" style="text-align:center">
+                    <image src="{{typeTree.icon}}" class="nav_img"></image>
+                    <text style="display: block; text-align:center">{{typeTree.name}}</text>
                 </navigator>
                     
             </view>
