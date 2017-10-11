@@ -20,41 +20,187 @@ Page({
     kbs:[],
     lastcat:[],
     course:[],
-    youList: []
+    youList: [],
+    navList: [],
+    adver: []
   },
-//跳转商品列表页   
-listdetail:function(e){
+
+  onLoad: function (options) {
+    var that = this;
+    wx.request({
+      url: con.Index_getongoods,
+      method:'GET',
+      data: { wxappid: con.wyy_user_wxappid, count:4},
+      header: {
+        'Content-Type':  'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          productData: res.data.info
+        });
+        setTimeout(function () {
+          that.setData({
+            loadingHidden: true
+          });
+        }, 1500)
+        //endInitData
+      },
+      fail:function(e){
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      },
+    }),
+
+        wx.request({
+          url: con.Index_getongoods,
+          method: 'GET',
+          data: { wxappid: con.wyy_user_wxappid},
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success: function (res) {
+
+            that.setData({
+              length: res.data.info.length
+
+            });
+            // console.log(length);
+            //endInitData
+          },
+          fail: function (e) {
+            wx.showToast({
+              title: '网络异常！',
+              duration: 2000
+            });
+          },
+        }),
+
+
+        wx.request({
+          url: con.Shop_getslide,
+          method: 'GET',
+          data: { wxappid: con.wyy_user_wxappid},
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success: function(r){
+
+            var img = r.data.info;
+            //  console.log(img)
+            that.setData({
+              imgUrls: img
+            })
+          }
+        })
+
+
+    this.getyouhuijuan();
+    this.getType();
+    this.getAd();
+  },
+  // 广告信息
+  getAd: function(){
+    var that = this;
+    wx.request({
+      url: con.Index_getad,
+      method: 'GET',
+      data: {
+        wxappid: con.wyy_user_wxappid
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function(res) {
+        console.log(res);
+        var data = res.data.info;
+        that.setData({
+          adver: data
+        })
+      }
+
+    })
+
+  },
+  //跳转商品列表页
+  listdetail: function (e) {
     // console.log(e.currentTarget.dataset.title)
     wx.navigateTo({
-      url: '../listdetail/listdetail?title='+e.currentTarget.dataset.title,
-      success: function(res){
+      url: '../listdetail/listdetail?title=' + e.currentTarget.dataset.title,
+      success: function (res) {
         // success
       },
-      fail: function() {
+      fail: function () {
         // fail
       },
-      complete: function() {
+      complete: function () {
         // complete
       }
     })
   },
-
-//点击加载更多
-getMore:function(e){
-  var that = this;
-  var page = that.data.page;
-  wx.request({
-      url: con.Index_getongoods,
-      method:'GET',
-      data: { wxappid: con.wyy_user_wxappid,count: page},
+  // 获取分类图标
+  getType: function () {
+    var that = this;
+    wx.request({
+      url: con.Index_getcategory,
+      method: 'GET',
+      data: { wxappid: con.wyy_user_wxappid },
       header: {
-        'Content-Type':  'application/json'
+        'Content-Type': 'application/json'
       },
-      success: function (res) {  
+      success: function (res) {
+        //--init data
+        var status = res.data.status;
+        if (status == 1) {
+          var list = res.data.info;
+          console.log(1212, res);
+          that.setData({
+            navList: list
+          })
+
+        } else {
+          wx.showToast({
+            title: res.data.err,
+            duration: 2000,
+          });
+        }
+        // console.log(list. currType)
+
+      },
+      error: function (e) {
+        wx.showToast({
+          title: '网络异常!',
+          duration: 2000,
+        });
+      },
+
+    });
+  },
+  // 跳转筛选页面
+  goToFilter: function(e){
+    var catid = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../filter/filter?catid=' + catid,
+    })
+  },
+
+  //点击加载更多
+  getMore: function (e) {
+    var that = this;
+    var page = that.data.page;
+    wx.request({
+      url: con.Index_getongoods,
+      method: 'GET',
+      data: { wxappid: con.wyy_user_wxappid, count: page },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
         // console.log(res.data.info)
         var prolist = res.data.info.length;
         // console.log(prolist,page);
-        if(prolist < page){
+        if (prolist < page) {
           wx.showToast({
             title: '没有更多数据！',
             duration: 2000
@@ -63,19 +209,19 @@ getMore:function(e){
         }
         //that.initProductData(data);
         that.setData({
-          page: page+4,
-          productData:res.data.info
+          page: page + 4,
+          productData: res.data.info
         });
         //endInitData
       },
-      fail:function(e){
+      fail: function (e) {
         wx.showToast({
           title: '网络异常！',
           duration: 2000
         });
       }
     })
-},
+  },
 
   changeIndicatorDots: function (e) {
     this.setData({
@@ -97,79 +243,6 @@ getMore:function(e){
       duration: e.detail.value
     })
   },
-  onLoad: function (options) {
-    var that = this;
-    wx.request({
-      url: con.Index_getongoods,
-      method:'GET',
-      data: { wxappid: con.wyy_user_wxappid, count:4},
-      header: {
-        'Content-Type':  'application/json'
-      },
-      success: function (res) {  
-        that.setData({
-          productData: res.data.info
-        });
-        setTimeout(function () {
-          that.setData({
-            loadingHidden: true
-          });
-        }, 1500)
-        //endInitData
-      },
-      fail:function(e){
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      },
-    }),
-
-      wx.request({
-        url: con.Index_getongoods,
-        method: 'GET',
-        data: { wxappid: con.wyy_user_wxappid},
-        header: {
-          'Content-Type': 'application/json'
-        },
-        success: function (res) {
-          
-          that.setData({
-           length: res.data.info.length
-           
-          });
-          // console.log(length);
-          //endInitData
-        },
-        fail: function (e) {
-          wx.showToast({
-            title: '网络异常！',
-            duration: 2000
-          });
-        },
-      }),
-
-
-    wx.request({
-      url: con.Shop_getslide,
-      method: 'GET',
-      data: { wxappid: con.wyy_user_wxappid},
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function(r){
-      
-           var img = r.data.info;
-          //  console.log(img)
-           that.setData({
-             imgUrls: img
-           })
-      }
-    })
-
-
-    this.getyouhuijuan()
-  },
   // 获取优惠劵信息
   getyouhuijuan: function(e) {
     var that= this;
@@ -181,7 +254,7 @@ getMore:function(e){
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (r) {
-        
+
         var data = r.data.list;
         // console.log(r, data);
 
@@ -195,7 +268,7 @@ getMore:function(e){
         that.setData({
           youList: data,
         })
-       
+
       }
     })
   },
@@ -235,7 +308,7 @@ getMore:function(e){
         }
       })
     }
-    
+
   },
 
   toDate: function (time) {
@@ -249,7 +322,7 @@ getMore:function(e){
 
 
   onShareAppMessage: function () {
-    
+
   }
 
 });
