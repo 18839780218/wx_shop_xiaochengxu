@@ -7,15 +7,19 @@
 
 ### 项目截图:
 
-<img src="https://github.com/shuashuai/wx_shop_xiaocehngxu/blob/master/xiaoguo/1.jpg" width="320px" style="display:inline;">
+<img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/1.png" width="320px" style="display:inline;">
     
-<img src="https://github.com/shuashuai/wx_shop_xiaocehngxu/blob/master/xiaoguo/2.jpg" width="320px" style="display:inline;">
+<img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/2.png" width="320px" style="display:inline;">
 
-<img src="https://github.com/shuashuai/wx_shop_xiaocehngxu/blob/master/xiaoguo/3.png" width="320px" style="display:inline;">
+<img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/3.png" width="320px" style="display:inline;">
 
-<img src="https://github.com/shuashuai/wx_shop_xiaocehngxu/blob/master/xiaoguo/4.png" width="320px" style="display:inline;">
+<img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/4.png" width="320px" style="display:inline;">
 
-<img src="https://github.com/shuashuai/wx_shop_xiaocehngxu/blob/master/xiaoguo/5.jpg" width="320px" style="display:inline;">
+<img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/5.png" width="320px" style="display:inline;">
+
+<img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/6.png" width="320px" style="display:inline;">
+
+<img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/7.png" width="320px" style="display:inline;">
 
 ### 开发环境：
 微信web开发者工具 v0.9.092300
