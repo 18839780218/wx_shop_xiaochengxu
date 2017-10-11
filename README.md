@@ -21,5 +21,4 @@
 
 <img src="https://github.com/shuashuai/wx_shop_xiaochengxu/blob/master/效果图/7.png" width="320px" style="display:inline;">
 
-### 开发环境：
-微信web开发者工具 v0.9.092300
+
