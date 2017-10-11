@@ -1,0 +1,63 @@
+ <view class="menu">
+    <view data-index="0" bindtap="tapMainMenu" class="dt">销量</view>
+     <view data-index="1" bindtap="tapMainMenu" class="dt">价格</view>
+      <view data-index="2" bindtap="tapMainMenu" class="dt">评分</view>
+      <view class="{{subMenuDisplay[0] == 'show' ? 'filter' : subMenuDisplay[1] == 'show' ? 'filter' : subMenuDisplay[2] == 'show' ? 'filter' : ''}}" data-index="100" bindtap="tapMainMenu"></view> 
+    <view class="{{subMenuDisplay[0]}} dd">
+        <view class="ul">
+          <view class="li p_left {{subMenuHighLight[0][0]}}" data-index="0-0" data-price="saleHeight" bindtap="tapSubMenu">从高到低 <text wx:if="{{subMenuHighLight[0][0] == 'highlight' }}" class="choose">✓</text></view>
+          <view class="li  p_left {{subMenuHighLight[0][1]}}" data-index="0-1" data-price="saleLow" bindtap="tapSubMenu">从低到高<text wx:if="{{subMenuHighLight[0][1] == 'highlight' }}" class="choose">✓</text></view>
+            <view class="li p_left btns">
+               <view class="reset" bindtap="resetChoice">重置搜索</view>
+               <view class="confirm" bindtap="confirmFun">确定</view>
+            </view>
+        </view>
+    </view>
+
+     <view class="{{subMenuDisplay[1]}} dd">
+        <view class="ul">
+          <view class="li p_left  {{subMenuHighLight[1][0]}}" data-index="1-0" data-price="priceHeight" bindtap="tapSubMenu">从高到低 <text wx:if="{{subMenuHighLight[1][0] == 'highlight' }}" class="choose">✓</text></view>
+          <view class="li p_left {{subMenuHighLight[1][1]}}" data-index="1-1"  data-price="priceLow" bindtap="tapSubMenu">从低到高 <text wx:if="{{subMenuHighLight[1][1] == 'highlight' }}" class="choose">✓</text></view>
+            <form class="li {{subMenuHighLight[1][2]}}" data-index="1-2"  bindtap="tapSubMenu" bindsubmit="formSubmit" bindreset="formReset">
+              <text style="margin-left: 8px;">价格区间:</text> <input name="mPrice" value="{{mPrice}}" placeholder="最低价" class="s_input s_right" bindinput="message"/> - <input class="s_input" placeholder="最高价" name="hPrice" value="{{hPrice}}"/>
+
+              <view class="btns b_top">
+               <view class="reset" bindtap="resetChoice">重置搜索</view>
+               <button form-type="submit" class="confirm" bindtap="confirmFun">确定</button>
+             </view>
+            </form>
+         </view>
+    </view>
+
+    <view class="{{subMenuDisplay[2]}} dd">
+        <view class="ul">
+          <view class="li p_left {{subMenuHighLight[2][0]}}" data-index="2-0" data-code="height" bindtap="tapSubMenu">从高到低 <text wx:if="{{subMenuHighLight[2][0] == 'highlight' }}" class="choose">✓</text></view>
+          <view class="li p_left {{subMenuHighLight[2][1]}}" data-index="2-1" data-code="low" bindtap="tapSubMenu">从低到高<text wx:if="{{subMenuHighLight[2][1] == 'highlight' }}" class="choose">✓</text></view>
+            <view class="li p_left btns">
+               <view class="reset" bindtap="resetChoice">重置搜索</view>
+               <view class="confirm" bindtap="confirmFun">确定</view>
+            </view>
+        </view>
+    </view>
+</view>
+ <view class="cont">
+      <navigator class="pr" url="../product/detail?productId={{item.id}}" hover-class="changestyle"
+                 wx:for="{{productData}}">
+       <view class="co">
+          <image class="photo" src="{{item.g_img}}"></image>
+          <view class="title">{{item.g_name}}</view>
+          <view style="display:flex;line-height:50rpx;padding:10rpx 0; overflow: hidden; text-align:left">
+            <view class="gmxx" style="  color: red;">¥{{item.shop_price}}</view>
+            <view class="gmx">¥{{item.market_price}}</view>
+          </view>
+          <view style="display:flex;line-height:50rpx;color:#999; text-align: left;">
+            <view class="gmxx" style="font-size:28rpx;width:30%">
+              <text wx:if="{{item.is_hot==1}}">热销</text>
+              <text wx:elif="{{item.is_bast==1}}">精品</text>
+              <text wx:else>推荐</text>
+            </view>
+            <view class="ku" style="width:60%">销量：{{item.sale_number}}</view>
+          </view>
+        </view>
+      </navigator>
+</view>
